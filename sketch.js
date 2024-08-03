@@ -127,6 +127,12 @@ function imgCreated(){
   imgelem.remove();
   // g.get will return image data as a p5.Image object
   img = g.get(0, 0, g.width, g.height);
+   if (img.width < img.height){
+    img.resize(width, 0);
+  } else {
+    img.resize(0, height);
+  }
+  
   imgs.push(img);
   loop();
   
@@ -134,12 +140,7 @@ function imgCreated(){
   
   
  
-  if (img.width < img.height){
-    img.resize(width, 0);
-  } else {
-    img.resize(0, height);
-  }
-  
+ 
  
 
   // Record that we have finished creating the image object.
