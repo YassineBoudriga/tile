@@ -1,5 +1,5 @@
 
-
+let imgs=[];
 let img, imgelem;
 var resolution = 5;
 let gui;
@@ -39,6 +39,7 @@ function setup() {
   cnv.position(newCanvasX,newCanvasY)
 
   img.resize(0,height);
+  imgs.push(img);
   noStroke();
   input = createFileInput(handleFile);
   gui = createGui('');
@@ -76,16 +77,16 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-    cols = img.width / resolution;
-  rows = img.height / resolution;
+    cols = imgs[length-1].width / resolution;
+  rows = imgs[length-1].height / resolution;
 
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i *resolution) + (j * resolution) *  img.width);
-      let c = color(img.pixels[current_pixel],
-                    img.pixels[current_pixel + 1],
-                    img.pixels[current_pixel + 2],
+      let current_pixel = 4*((i *resolution) + (j * resolution) *  imgs[length-1].width);
+      let c = color(imgs[length-1].pixels[current_pixel],
+                    imgs[length-1].pixels[current_pixel + 1],
+                    imgs[length-1].pixels[current_pixel + 2],
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
       if(b==null) continue;
@@ -117,8 +118,7 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
-  img = undefined;
-  img = createImage(g.width,g.height);
+  
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
@@ -127,6 +127,7 @@ function imgCreated(){
   imgelem.remove();
   // g.get will return image data as a p5.Image object
   img = g.get(0, 0, g.width, g.height);
+  imgs.push(img);
   loop();
   
  
