@@ -76,8 +76,8 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-    cols = img.width / resolution;
-  rows = img.height / resolution;
+    cols = int(img.width / resolution);
+  rows = int(img.height / resolution);
   var d = pixelDensity();
 
 
