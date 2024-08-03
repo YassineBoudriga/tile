@@ -76,15 +76,14 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-    cols = img.width / resolution;
-  rows = img.height / resolution;
-  var d = pixelDensity();
+    cols = int(img.width / resolution);
+  rows = int(img.height / resolution);
 
 
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i * d*resolution) + (j *d* resolution) *  img.width);
+      let current_pixel = 4*((i *resolution) + (j * resolution) *  img.width);
       let c = color(img.pixels[current_pixel],
                     img.pixels[current_pixel + 1],
                     img.pixels[current_pixel + 2],
