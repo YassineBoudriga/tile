@@ -125,26 +125,19 @@ function imgCreated(){
   imgelem.remove();
   // g.get will return image data as a p5.Image object
   img = g.get(0, 0, g.width, g.height);
-  img.resize(0,height);
   loop();
   
-  // Because we've converted it into a p5.Image object, we can
-  // use functions such as 'resize', and 'filter',
-  // which aren't available on the HTML img element.
-  // Uncomment the following lines for an example...
+ 
   
-  /*
-  // Resize it to fill the canvas
+  
+ 
   if (img.width < img.height){
     img.resize(width, 0);
   } else {
     img.resize(0, height);
   }
   
-  // Posterize and invert the colours
-  img.filter(POSTERIZE, 2);
-  img.filter(INVERT);
-  */
+ 
 
   // Record that we have finished creating the image object.
 }
