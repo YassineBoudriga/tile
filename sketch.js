@@ -76,8 +76,8 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-  cols = width / resolution;
-  rows = height / resolution;
+    cols = img.width / resolution;
+  rows = img.height / resolution;
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
