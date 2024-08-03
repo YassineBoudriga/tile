@@ -27,7 +27,7 @@ var shape = ["Circle","Rectangle"];
 
 
 function preload() {
-  img = loadImage('eclipse.jpg');
+  imgelem  = loadImage('eclipse.jpg');
 }
 
 function setup() {
@@ -38,7 +38,7 @@ function setup() {
   let newCanvasY = (windowHeight- height)/2;
   cnv.position(newCanvasX,newCanvasY)
 
-  img.resize(0,height);
+  imgelem.resize(0,height);
   imgs.push(img);
   noStroke();
   input = createFileInput(handleFile);
