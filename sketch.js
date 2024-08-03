@@ -1,5 +1,5 @@
 
-let imgs=[];
+
 let img, imgelem;
 var resolution = 5;
 let gui;
@@ -27,7 +27,7 @@ var shape = ["Circle","Rectangle"];
 
 
 function preload() {
-  imgelem  = loadImage('eclipse.jpg');
+  img = loadImage('eclipse.jpg');
 }
 
 function setup() {
@@ -38,8 +38,7 @@ function setup() {
   let newCanvasY = (windowHeight- height)/2;
   cnv.position(newCanvasX,newCanvasY)
 
-  imgelem.resize(0,height);
-  imgs.push(img);
+  img.resize(0,height);
   noStroke();
   input = createFileInput(handleFile);
   gui = createGui('');
@@ -69,7 +68,7 @@ function setup() {
 function draw() {
   background(250) ;
   
-  imgelem.loadPixels();
+  img.loadPixels();
   col1.color=color1;
   col2.color=color2;
   col3.color=color3;
@@ -77,19 +76,17 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-    cols = imgelem.width / resolution;
-  rows = imgelem.height / resolution;
-
+    cols = img.width / resolution;
+  rows = img.height / resolution;
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i *resolution) + (j * resolution) *  imgelem.width);
-      let c = color(imgelem.pixels[current_pixel],
-                    imgelem.pixels[current_pixel + 1],
-                    imgelem.pixels[current_pixel + 2],
+      let current_pixel = 4*((i * resolution) + (j * resolution) *  img.width);
+      let c = color(img.pixels[current_pixel],
+                    img.pixels[current_pixel + 1],
+                    img.pixels[current_pixel + 2],
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
-      if(b==NaN) continue;
       translate(i*resolution, j*resolution);
       fill(palette[b].color); 
       if(shape=="Circle")
@@ -102,6 +99,7 @@ function draw() {
   
 }
 function handleFile(file){
+  imgLoaded = false;
   if (file.type === 'image') {
     // Create the image as an img element. 
     // The 'imgCreated' function will be called when it
@@ -117,6 +115,7 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
+  img=undefined;
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
@@ -124,8 +123,10 @@ function imgCreated(){
   // Remove the original element from the DOM.
   imgelem.remove();
   // g.get will return image data as a p5.Image object
-  imgelem = g.get(0, 0, g.width, g.height)
+  img = g.get(0, 0, g.width, g.height);
   
+  img.resize(0,height);
+  loop();
   
   // Because we've converted it into a p5.Image object, we can
   // use functions such as 'resize', and 'filter',
@@ -146,7 +147,6 @@ function imgCreated(){
   */
 
   // Record that we have finished creating the image object.
-  imgLoaded = true;
 }
 
 function setPalette(){
