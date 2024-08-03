@@ -78,12 +78,11 @@ function draw() {
   //setPalette();
     cols = img.width / resolution;
   rows = img.height / resolution;
-  var d = pixelDensity();
 
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i *d*resolution) + (j * d*resolution) *  img.width);
+      let current_pixel = 4*((i *resolution) + (j * resolution) *  img.width);
       let c = color(img.pixels[current_pixel],
                     img.pixels[current_pixel + 1],
                     img.pixels[current_pixel + 2],
@@ -118,6 +117,7 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
+  img=undefined;
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
