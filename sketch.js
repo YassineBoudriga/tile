@@ -90,7 +90,7 @@ function draw() {
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
       print(b);
-      if(b==null) continue;
+      if(b==NaN) continue;
       translate(i*resolution, j*resolution);
       fill(palette[b].color); 
       if(shape=="Circle")
