@@ -77,16 +77,16 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-    cols = imgs[imgs.length-1].width / resolution;
-  rows = imgs[imgs.length-1].height / resolution;
+    cols = imgelem.width / resolution;
+  rows = imgelem.height / resolution;
 
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i *resolution) + (j * resolution) *  imgs[imgs.length-1].width);
-      let c = color(imgs[imgs.length-1].pixels[current_pixel],
-                    imgs[imgs.length-1].pixels[current_pixel + 1],
-                    imgs[imgs.length-1].pixels[current_pixel + 2],
+      let current_pixel = 4*((i *resolution) + (j * resolution) *  imgelem.width);
+      let c = color(imgelem.pixels[current_pixel],
+                    imgelem.pixels[current_pixel + 1],
+                    imgelem.pixels[current_pixel + 2],
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
       if(b==NaN) continue;
@@ -125,8 +125,7 @@ function imgCreated(){
   imgelem.remove();
   // g.get will return image data as a p5.Image object
   imgelem = g.get(0, 0, g.width, g.height)
-  imgs=[];
-  imgs.push(imgelem);
+  
   
   // Because we've converted it into a p5.Image object, we can
   // use functions such as 'resize', and 'filter',
