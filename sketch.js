@@ -34,8 +34,8 @@ function setup() {
 
 
   cnv = createCanvas(800, 800);
-  let newCanvasX = (innerWidth- width)/2;
-  let newCanvasY = (innerHeight- height)/2;
+  let newCanvasX = (windowWidth- width)/2;
+  let newCanvasY = (windowHeight- height)/2;
   cnv.position(newCanvasX,newCanvasY)
 
   img.resize(0,height);
