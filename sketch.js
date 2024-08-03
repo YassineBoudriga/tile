@@ -125,6 +125,7 @@ function imgCreated(){
   imgelem.remove();
   // g.get will return image data as a p5.Image object
   imgelem = g.get(0, 0, g.width, g.height)
+  imgs=[];
   imgs.push(imgelem);
   
   // Because we've converted it into a p5.Image object, we can
