@@ -88,7 +88,7 @@ function draw() {
                     img.pixels[current_pixel + 2],
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
-      if(b!=undefined) continue;
+      if(b==undefined) continue;
       translate(i*resolution, j*resolution);
       fill(palette[b].color); 
       if(shape=="Circle")
