@@ -78,6 +78,8 @@ function draw() {
   //setPalette();
     cols = img.width / resolution;
   rows = img.height / resolution;
+    let d = pixelDensity();
+
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
