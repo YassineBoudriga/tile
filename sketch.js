@@ -89,7 +89,6 @@ function draw() {
                     imgs[imgs.length-1].pixels[current_pixel + 2],
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
-      print(b);
       if(b==NaN) continue;
       translate(i*resolution, j*resolution);
       fill(palette[b].color); 
