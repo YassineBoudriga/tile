@@ -77,16 +77,16 @@ function draw() {
   col5.color=color5;
   col6.color=color6;
   //setPalette();
-    cols = imgs[length-1].width / resolution;
-  rows = imgs[length-1].height / resolution;
+    cols = imgs[imgs.length-1].width / resolution;
+  rows = imgs[imgs.length-1].height / resolution;
 
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i *resolution) + (j * resolution) *  imgs[length-1].width);
-      let c = color(imgs[length-1].pixels[current_pixel],
-                    imgs[length-1].pixels[current_pixel + 1],
-                    imgs[length-1].pixels[current_pixel + 2],
+      let current_pixel = 4*((i *resolution) + (j * resolution) *  imgs[imgs.length-1].width);
+      let c = color(imgs[imgs.length-1].pixels[current_pixel],
+                    imgs[imgs.length-1].pixels[current_pixel + 1],
+                    imgs[imgs.length-1].pixels[current_pixel + 2],
                     )
       let b = round(map(brightness(c),0,100,0,palette_length-1));
       if(b==null) continue;
