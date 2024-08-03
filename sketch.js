@@ -78,12 +78,12 @@ function draw() {
   //setPalette();
     cols = img.width / resolution;
   rows = img.height / resolution;
-
+ var d = pixelDensity();
 
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i *resolution) + (j * resolution) *  width);
+      let current_pixel = 4*((i *d*resolution) + (j * d*resolution) *  width);
       let c = color(img.pixels[current_pixel],
                     img.pixels[current_pixel + 1],
                     img.pixels[current_pixel + 2],
