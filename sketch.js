@@ -103,7 +103,6 @@ function draw() {
   
 }
 function handleFile(file){
-  imgLoaded = false;
   if (file.type === 'image') {
     // Create the image as an img element. 
     // The 'imgCreated' function will be called when it
@@ -119,7 +118,6 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
-  let tempimg;
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
@@ -127,24 +125,29 @@ function imgCreated(){
   // Remove the original element from the DOM.
   imgelem.remove();
   // g.get will return image data as a p5.Image object
-  tempimg = g.get(0, 0, g.width, g.height);
-   if (tempimg.width < tempimg.height){
-    tempimg.resize(width, 0);
+  imgelem = g.get(0, 0, g.width, g.height)
+  imgs.push(imgelem);
+  
+  // Because we've converted it into a p5.Image object, we can
+  // use functions such as 'resize', and 'filter',
+  // which aren't available on the HTML img element.
+  // Uncomment the following lines for an example...
+  
+  /*
+  // Resize it to fill the canvas
+  if (img.width < img.height){
+    img.resize(width, 0);
   } else {
-    tempimg.resize(0, height);
+    img.resize(0, height);
   }
   
-  imgs.push(tempimg);
-  loop();
-  
- 
-  
-  
- 
- 
- 
+  // Posterize and invert the colours
+  img.filter(POSTERIZE, 2);
+  img.filter(INVERT);
+  */
 
   // Record that we have finished creating the image object.
+  imgLoaded = true;
 }
 
 function setPalette(){
