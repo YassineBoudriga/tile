@@ -31,6 +31,7 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
 
 
   cnv = createCanvas(800, 800);
@@ -81,7 +82,7 @@ function draw() {
   for(let i = 0; i < cols; i++){
     for(let j = 0; j < rows; j++){
       push();
-      let current_pixel = 4*((i * resolution) + (j * resolution) *  img.width);
+      let current_pixel = 4*((i * resolution) + (j *resolution) *  img.width);
       let c = color(img.pixels[current_pixel],
                     img.pixels[current_pixel + 1],
                     img.pixels[current_pixel + 2],
@@ -115,9 +116,10 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
-  img=undefined;
+  img = undefined;
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
+  let d = window.pixelDensity();
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
   g.image(imgelem, 0, 0);
   // Remove the original element from the DOM.
