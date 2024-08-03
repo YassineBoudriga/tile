@@ -69,7 +69,7 @@ function setup() {
 function draw() {
   background(250) ;
   
-  img.loadPixels();
+  imgelem.loadPixels();
   col1.color=color1;
   col2.color=color2;
   col3.color=color3;
