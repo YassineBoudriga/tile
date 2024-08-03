@@ -117,6 +117,7 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
+  img=undefined;
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
