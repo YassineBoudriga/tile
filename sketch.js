@@ -118,7 +118,7 @@ function handleFile(file){
 // Once the img element is created, use it to 
 // convert the image element into a p5Image object. 
 function imgCreated(){
-  let img;
+  let tempimg;
   imgelem.hide();
   // Create a temporary p5.Graphics object to draw the image.
   let g = createGraphics(imgelem.elt.width, imgelem.elt.height);
@@ -126,14 +126,14 @@ function imgCreated(){
   // Remove the original element from the DOM.
   imgelem.remove();
   // g.get will return image data as a p5.Image object
-  img = g.get(0, 0, g.width, g.height);
-   if (img.width < img.height){
-    img.resize(width, 0);
+  tempimg = g.get(0, 0, g.width, g.height);
+   if (tempimg.width < tempimg.height){
+    tempimg.resize(width, 0);
   } else {
-    img.resize(0, height);
+    tempimg.resize(0, height);
   }
   
-  imgs.push(img);
+  imgs.push(tempimg);
   loop();
   
  
